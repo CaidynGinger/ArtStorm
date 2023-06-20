@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyC-ns1tX3xyKgDDVFV61HXHyVY6Xw60TN4",
@@ -9,10 +10,9 @@ const firebaseApp = initializeApp({
   messagingSenderId: "657784455041",
   appId: "1:657784455041:web:de04d76d08f51e2ca93280",
 });
-
-const db = getFirestore();
-
-export default db;
+export const app = initializeApp(firebaseApp);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
 
 // try {
 //     const docRef = await addDoc(collection(db, "users"), {

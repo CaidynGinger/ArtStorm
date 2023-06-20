@@ -12,6 +12,8 @@ export default function CompetitionFullView({ route, navigation, compId }) {
 
   const userSubmitted = true;
 
+  const userJudge = false
+
   function submissionUxHandler() {
     if (userSubmitted) {
       return (
@@ -36,6 +38,7 @@ export default function CompetitionFullView({ route, navigation, compId }) {
     };
   }, [route]);
   return (
+    
     <ScrollView style={styles.root}>
       <ImageBackground
         source={require("../../assets/img/Comp1.jpg")}
@@ -44,6 +47,8 @@ export default function CompetitionFullView({ route, navigation, compId }) {
       >
         <View style={styles.gradient}>
           <Title style={styles.title}>Adorable Enchantment</Title>
+          <Text style={styles.date}>Start Date: 1/9/2023</Text>
+          <Text style={styles.date}>End Date: 1/12/2023</Text>
         </View>
       </ImageBackground>
       <View style={styles.container}>
@@ -56,6 +61,7 @@ export default function CompetitionFullView({ route, navigation, compId }) {
             innocence.
           </Text>
         </View>
+        {userJudge && <PrimaryButton>Judge</PrimaryButton>}
         <View style={styles.cardBearContainer}>
           <Image
             style={styles.cardBear}
@@ -90,7 +96,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#111111",
   },
+  date:{
+    fontSize: 16,
+    color: "#fff",
+    marginBottom: 6,
 
+  },
   image: {
     justifyContent: "center",
     alignItems: "center",
