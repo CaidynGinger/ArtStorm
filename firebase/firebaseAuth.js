@@ -2,15 +2,17 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseApp = initializeApp({
-  apiKey: "### FIREBASE API KEY ###",
-  authDomain: "### FIREBASE AUTH DOMAIN ###",
-  projectId: "### CLOUD FIRESTORE PROJECT ID ###",
+  apiKey: "AIzaSyC-ns1tX3xyKgDDVFV61HXHyVY6Xw60TN4",
+  authDomain: "art-storm-cedbd.firebaseapp.com",
+  projectId: "art-storm-cedbd",
+  storageBucket: "art-storm-cedbd.appspot.com",
+  messagingSenderId: "657784455041",
+  appId: "1:657784455041:web:de04d76d08f51e2ca93280",
 });
 
 const db = getFirestore();
 
 export default db;
-
 
 // try {
 //     const docRef = await addDoc(collection(db, "users"), {
@@ -22,4 +24,3 @@ export default db;
 //   } catch (e) {
 //     console.error("Error adding document: ", e);
 //   }
-  
