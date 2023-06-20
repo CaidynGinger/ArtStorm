@@ -18,9 +18,9 @@ export default function CreateCompetition() {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Input onChange={CompetitionNameHandler} value={CompetitionName} label={'Competition Name'} color={Colors.primary500}/>
         {/* <Input onChange={CompetitionNameHandler} value={CompetitionName} label={'Competition Name'} color={Colors.primary500}/> */}
-
+        {/* <Input onChange={CompetitionNameHandler} value={CompetitionName} label={'Competition Name'} color={Colors.primary500}/> */}
+        
       </View>
       <View>
         <PrimaryButton>Create Competition</PrimaryButton>

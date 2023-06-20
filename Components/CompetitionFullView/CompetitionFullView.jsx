@@ -1,18 +1,25 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { ImageBackground } from "react-native";
 import Title from "../UI/Title";
 import { Image } from "react-native";
 import { ScrollView } from "react-native";
 import { PrimaryButton } from "../UI/PrimaryButton";
 import CompetitionCriteriaCard from "./CompetitionCriteriaCard";
+import { AuthContext } from "../../Store/auth-context";
 
 export default function CompetitionFullView({ route, navigation, compId }) {
   const { setLocation } = route.params;
 
   const userSubmitted = true;
 
-  const userJudge = false
+  const authCtx = useContext(AuthContext);
+
+  //  console.log(authCtx.UserDetails.userRecord);
+
+  console.log(authCtx.UserDetails.userRecord);
+
+  const { judge } = authCtx.UserDetails.userRecord;
 
   function submissionUxHandler() {
     if (userSubmitted) {
@@ -38,7 +45,6 @@ export default function CompetitionFullView({ route, navigation, compId }) {
     };
   }, [route]);
   return (
-    
     <ScrollView style={styles.root}>
       <ImageBackground
         source={require("../../assets/img/Comp1.jpg")}
@@ -61,7 +67,7 @@ export default function CompetitionFullView({ route, navigation, compId }) {
             innocence.
           </Text>
         </View>
-        {userJudge && <PrimaryButton>Judge</PrimaryButton>}
+        {judge && <PrimaryButton>Judge</PrimaryButton>}
         <View style={styles.cardBearContainer}>
           <Image
             style={styles.cardBear}
@@ -76,7 +82,7 @@ export default function CompetitionFullView({ route, navigation, compId }) {
               "The artwork should revolve around a creature or scene that evokes cuteness and cuddliness. This could include adorable animals, whimsical creatures, or delightful characters. The goal is to create an artwork that brings a smile to viewers' faces."
             }
           />
-           <CompetitionCriteriaCard
+          <CompetitionCriteriaCard
             criteria={"Art Style"}
             description={
               "Artists are free to choose their preferred art style, whether it be realistic, cartoonish, or stylized. The style should complement the theme and enhance the overall charm of the piece."
@@ -96,11 +102,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#111111",
   },
-  date:{
+  date: {
     fontSize: 16,
     color: "#fff",
     marginBottom: 6,
-
   },
   image: {
     justifyContent: "center",
@@ -147,12 +152,12 @@ const styles = StyleSheet.create({
     //    height: 600,\
     aspectRatio: 28 / 39,
   },
-  criteria:{
+  criteria: {
     textAlign: "center",
     textDecorationLine: "underline",
   },
-  submissionTitle:{
+  submissionTitle: {
     textAlign: "center",
     textDecorationLine: "underline",
-  }
+  },
 });
