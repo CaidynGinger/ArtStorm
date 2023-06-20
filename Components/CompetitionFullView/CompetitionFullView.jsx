@@ -1,25 +1,31 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { ImageBackground } from "react-native";
-import Title from "./UI/Title";
+import Title from "../UI/Title";
 import { Image } from "react-native";
 import { ScrollView } from "react-native";
-import { PrimaryButton } from "./UI/PrimaryButton";
+import { PrimaryButton } from "../UI/PrimaryButton";
+import CompetitionCriteriaCard from "./CompetitionCriteriaCard";
 
 export default function CompetitionFullView({ route, navigation, compId }) {
   const { setLocation } = route.params;
 
-  const userSubmitted = false;
+  const userSubmitted = true;
 
   function submissionUxHandler() {
     if (userSubmitted) {
-        return (
-          <View>
-            <Text>Competition 1</Text>
-          </View>
-        );
-      }
-      return <PrimaryButton>Submit Image</PrimaryButton>;
+      return (
+        <View>
+          <Title style={styles.submissionTitle}>Submission</Title>
+          <Image
+            style={styles.cardBear}
+            source={require("../../assets/img/subbmition.png")}
+          />
+          <PrimaryButton>Re-Submit Image</PrimaryButton>
+        </View>
+      );
+    }
+    return <PrimaryButton>Submit Image</PrimaryButton>;
   }
 
   useEffect(() => {
@@ -32,7 +38,7 @@ export default function CompetitionFullView({ route, navigation, compId }) {
   return (
     <ScrollView style={styles.root}>
       <ImageBackground
-        source={require("../assets/img/Comp1.jpg")}
+        source={require("../../assets/img/Comp1.jpg")}
         resizeMode="cover"
         style={styles.image}
       >
@@ -53,7 +59,22 @@ export default function CompetitionFullView({ route, navigation, compId }) {
         <View style={styles.cardBearContainer}>
           <Image
             style={styles.cardBear}
-            source={require("../assets/img/Card.png")}
+            source={require("../../assets/img/Card.png")}
+          />
+        </View>
+        <View>
+          <Title style={styles.criteria}>Criteria</Title>
+          <CompetitionCriteriaCard
+            criteria={"Theme"}
+            description={
+              "The artwork should revolve around a creature or scene that evokes cuteness and cuddliness. This could include adorable animals, whimsical creatures, or delightful characters. The goal is to create an artwork that brings a smile to viewers' faces."
+            }
+          />
+           <CompetitionCriteriaCard
+            criteria={"Art Style"}
+            description={
+              "Artists are free to choose their preferred art style, whether it be realistic, cartoonish, or stylized. The style should complement the theme and enhance the overall charm of the piece."
+            }
           />
         </View>
         {submissionUxHandler()}
@@ -62,9 +83,12 @@ export default function CompetitionFullView({ route, navigation, compId }) {
   );
 }
 
+// CompetitionCriteriaCard.jsx
+
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: "#111111",
   },
 
   image: {
@@ -104,7 +128,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // backgroundColor: "black",
     marginBottom: 20,
-    paddingHorizontal: 40,
+    paddingHorizontal: 20,
   },
   cardBear: {
     width: "100%",
@@ -112,4 +136,12 @@ const styles = StyleSheet.create({
     //    height: 600,\
     aspectRatio: 28 / 39,
   },
+  criteria:{
+    textAlign: "center",
+    textDecorationLine: "underline",
+  },
+  submissionTitle:{
+    textAlign: "center",
+    textDecorationLine: "underline",
+  }
 });
